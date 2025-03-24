@@ -1,0 +1,42 @@
+{
+  "name": "Frappe CRM Development",
+  "dockerComposeFile": ["../docker-compose.yml"],
+  "service": "frappe",
+  "workspaceFolder": "/workspace",
+  "remoteUser": "frappe",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "mhutchie.git-graph",
+        "eamodio.gitlens",
+        "formulahendry.code-runner",
+        "ms-azuretools.vscode-docker"
+      ],
+      "settings": {
+        "python.defaultInterpreterPath": "/usr/bin/python3",
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+          "source.fixAll.eslint": true
+        },
+        "python.linting.enabled": true,
+        "python.linting.pylintEnabled": true,
+        "files.associations": {
+          "*.html": "jinja-html",
+          "*.js": "javascript"
+        },
+        "terminal.integrated.defaultProfile.linux": "bash",
+        "terminal.integrated.profiles.linux": {
+          "bash": {
+            "path": "/bin/bash"
+          }
+        }
+      }
+    }
+  },
+  "forwardPorts": [8000, 9000],
+  "postStartCommand": "cd /workspace/frappe-bench && bench start || echo 'Bench not yet initialized'"
+}

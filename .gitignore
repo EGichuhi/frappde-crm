@@ -1,0 +1,62 @@
+# Development environment files
+.cache/
+.local/
+.npm/
+.nvm/
+.pyenv/
+.vscode-server/
+.yarn/
+.bash_logout
+.bashrc
+.gitconfig
+.profile
+.wget-hsts
+
+# Docker related
+docker-compose.override.yml
+
+# Python related
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Node related
+node_modules/
+npm-debug.log
+yarn-error.log
+yarn-debug.log
+
+# Frappe specific
+sites/*/private/
+sites/*/public/files/
+sites/*/private/backups/
+sites/*/private/files/
+sites/.task-wb/
+.bench/
+
+# Log files
+*.log
+logs/
+
+# Environment variables
+.env
+.env.local
+.env.development
+.env.test
+.env.production

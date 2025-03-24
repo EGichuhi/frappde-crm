@@ -1,0 +1,51 @@
+version: "3.7"
+name: crm
+services:
+  mariadb:
+    image: mariadb:10.8
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+      - --skip-character-set-client-handshake
+      - --skip-innodb-read-only-compressed # Temporary fix for MariaDB 10.6
+    environment:
+      MYSQL_ROOT_PASSWORD: 123
+    volumes:
+      - mariadb-data:/var/lib/mysql
+    networks:
+      - frappe-network
+
+  redis:
+    image: redis:alpine
+    networks:
+      - frappe-network
+
+  frappe:
+    image: frappe/bench:latest
+    command: bash /workspace/setup.sh
+    environment:
+      - SHELL=/bin/bash
+    working_dir: /home/frappe
+    volumes:
+      - .:/workspace
+      # VS Code server volume for persistent extensions and settings
+      - vscode-server:/home/frappe/.vscode-server
+    ports:
+      - 8000:8000
+      - 9000:9000
+    networks:
+      - frappe-network
+    depends_on:
+      - mariadb
+      - redis
+    # Keep container running even if setup.sh exits
+    tty: true
+    stdin_open: true
+
+volumes:
+  mariadb-data:
+  vscode-server: # Persistent volume for VS Code server
+
+networks:
+  frappe-network:
+    driver: bridge
