@@ -12,7 +12,7 @@ This guide will help you get up and running with our Frappe CRM development envi
 
 2. **Clone the repository**
    ```bash
-   git clone https://github.com/your-org/frappe-crm.git
+   git clone https://github.com/EGichuhi/frappe-crm.git
    cd frappe-crm
    ```
 
